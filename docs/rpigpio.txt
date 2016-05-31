@@ -18,7 +18,7 @@ User domogik must be part of gpio group if not you'll get an exception:
 
 RuntimeError: No access to /dev/mem.  Try running as root!
 
-sudo adduser domogik gpio
+``sudo adduser domogik gpio``
 
 Plugin configuration
 ====================
