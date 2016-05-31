@@ -1,0 +1,97 @@
+{
+    "configuration": [
+	{
+	    "default": "BCM", 
+	    "description": "BOARD or BCM option reference to pin read", 
+	    "key": "gpio_pin_mode", 
+	    "name": "GPIO pin mode",
+	    "required": "yes", 
+	    "type": "choice",
+	    "choices": ["BCM","BOARD"]
+	}
+    ],
+    "commands": {
+       "gpio_output": {
+           "name": "Switch 0 or 1 a gpio output",
+           "return_confirmation": true,
+           "parameters": [
+               {
+                   "key": "level",
+                   "data_type": "DT_Bool",
+                   "conversion": ""
+               }
+           ]
+        }
+    },
+    "xpl_commands": {},
+    "sensors": {
+        "gpio_input": {
+            "name": "Read Gpio input",
+            "data_type": "DT_Bool",
+            "conversion": "",
+            "incremental": false,
+            "timeout": 0,
+            "history": {
+                "store": true,
+                "duplicate": false,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        }
+    },
+    "xpl_stats": {},
+    "device_types": {
+        "gpio.output": {
+            "id": "gpio.output",
+            "description": "Switch one pin on the gpio", 
+            "name": "Ggpio Output",
+            "commands": ["gpio_output"],
+            "sensors": ["gpio_input"],
+            "parameters": [
+                {
+                    "key": "Pin",
+                    "xpl": false,
+                    "description": "The pin number",
+                    "type": "integer"
+                }
+            ]
+        },
+        "gpio.input": {
+            "id": "gpio.input",
+            "description": "Read a pin on the gpio", 
+            "name": "Ggpio Input",
+            "commands": [],
+            "sensors": ["gpio_input"],
+            "parameters": [
+                {
+                    "key": "Pin",
+                    "xpl": false,
+                    "description": "The pin number",
+                    "type": "integer"
+                }
+            ]
+        } 
+    },
+    "identity": {
+	"author": "tikismoke", 
+	"author_email": "new.domodroid at gmail.com", 
+	"tags": ["protocole"], 
+	"dependencies": [
+            {
+                "id": "RPi.GPIO (>=0.6.2)",
+                "type": "python"
+            },
+	    {
+	        "id": "sudo adduser domogik gpio",
+                "type": "other"
+	    }
+	],
+	"description": "Plugin for gpio pin on raspberry pi",
+	"domogik_min_version": "0.5.0", 
+	"name": "rpigpio", 
+	"type": "plugin", 
+	"version": "0.1"
+    },
+    "json_version": 2
+}

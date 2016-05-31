@@ -1,0 +1,66 @@
+.. _index:
+
+==============
+Plugin rpigpio
+==============
+
+Purpose
+=======
+
+Reading or writing 0/1, true/false from the gpio of a raspberry pi.
+
+Dependencies
+============
+
+* RPi.GPIO (>=0.6.2)
+
+User domogik must be part of gpio group if not you'll get an exception:
+
+RuntimeError: No access to /dev/mem.  Try running as root!
+
+sudo adduser domogik gpio
+
+Plugin configuration
+====================
+
+There is only parameter to configure for the plugin :
+
+================ ============== ==========================================================================
+Key              Default value  Description
+================ ============== ==========================================================================
+GPIO_assignement BCM            Defines the pin read method to use (BCM or BOARD)
+================ ============== ==========================================================================
+
+Look at http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/ to know the difference beetween BCM and BOARD:
+
+The BOARD option if you refer to the pins by their numbers (i.e 11 for pin 11 that is marked as GPIO17).
+
+The BCM option if you refer the pins by the "Broadcom SOC channel" number, these are the numbers after "GPIO" (i.e 17 for GPIO17).
+
+Create the domogik devices
+==========================
+
+Domogik device type : gpio.input or gpio.output
+-----------------------------------------------
+
+1 parameter is need for a domogik GPIO device creation
+
+===================== =========================== ======================================================================
+Key                   Type                        Description
+===================== =========================== ======================================================================
+pin                   integer                     The pin number to use
+===================== =========================== ======================================================================
+
+Gpio.ouput device also have a sensor to know the real state of the ouput if they had been change from something else (another program for example).
+
+Start the plugin
+================
+
+You can now start the plugin (start button) and use the created devices.
+
+
+Set up your widgets on the user interface
+=========================================
+
+You can now place the widgets of your devices features on the user interface.
+
